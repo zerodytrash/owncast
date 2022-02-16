@@ -10,6 +10,7 @@ import (
 	"github.com/owncast/owncast/config"
 	"github.com/owncast/owncast/controllers"
 	"github.com/owncast/owncast/controllers/admin"
+	"github.com/owncast/owncast/controllers/auth/indieauth"
 	"github.com/owncast/owncast/core/chat"
 	"github.com/owncast/owncast/core/data"
 	"github.com/owncast/owncast/core/user"
@@ -305,6 +306,12 @@ func Start() error {
 
 	// Return federated activities
 	http.HandleFunc("/api/admin/federation/actions", middleware.RequireAdminAuth(admin.GetFederatedActions))
+
+	// Auth
+
+	// Start auth flow
+	http.HandleFunc("/api/auth/indieauth", middleware.RequireUserAccessToken(indieauth.StartAuthFlow))
+	http.HandleFunc("/api/auth/indieauth/callback", indieauth.HandleRedirect)
 
 	// ActivityPub has its own router
 	activitypub.Start(data.GetDatastore())

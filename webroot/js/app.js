@@ -23,6 +23,8 @@ import FediverseFollowModal, {
   FediverseFollowButton,
 } from './components/fediverse-follow-modal.js';
 
+import IndieAuthForm from './components/chat/indieauth.js';
+
 import {
   addNewlines,
   checkUrlPathForDisplay,
@@ -869,6 +871,8 @@ export default class App extends Component {
                 >${streamOnline && streamTitle ? streamTitle : name}</span
               >
             </h1>
+            <${IndieAuthForm} accessToken=${this.state.accessToken} />
+
             <div
               id="user-options-container"
               class="flex flex-row justify-end items-center flex-no-wrap"

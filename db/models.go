@@ -34,3 +34,30 @@ type ApOutbox struct {
 	CreatedAt        sql.NullTime
 	LiveNotification sql.NullBool
 }
+
+type Auth struct {
+	ID        int32
+	UserID    string
+	Token     string
+	Type      string
+	Timestamp time.Time
+}
+
+type User struct {
+	ID            string
+	DisplayName   string
+	DisplayColor  int32
+	CreatedAt     sql.NullTime
+	DisabledAt    sql.NullTime
+	PreviousNames sql.NullString
+	NamechangedAt sql.NullTime
+	Scopes        sql.NullString
+	Type          sql.NullString
+	LastUsed      interface{}
+}
+
+type UserAccessToken struct {
+	Token     string
+	UserID    string
+	Timestamp time.Time
+}
