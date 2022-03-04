@@ -10,7 +10,7 @@ import (
 	"github.com/owncast/owncast/core/data"
 )
 
-// ApproveFollower will approve a federated follow request.
+// ApproveFollower will approve or reject a federated follow request.
 func ApproveFollower(w http.ResponseWriter, r *http.Request) {
 	if !requirePOST(w, r) {
 		return
@@ -57,6 +57,9 @@ func ApproveFollower(w http.ResponseWriter, r *http.Request) {
 	}
 
 	controllers.WriteSimpleResponse(w, true, "follower updated")
+}
+
+func BlockFederatedUser(w http.ResponseWriter, r *http.Request) {
 }
 
 // GetPendingFollowRequests will return a list of pending follow requests.
